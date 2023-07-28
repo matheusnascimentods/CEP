@@ -1,24 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable no-unused-expressions */
+import { useState } from 'react';
+import { FiSearch } from "react-icons/fi";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import api from './services/api';
+import './style.css';
 
 function App() {
+
+  const [input, setInput] = useState('');
+  const [cep, setCep] = useState({});
+
+  async function getCEP() {
+    try {
+      const response = await api.get(`${input}/json/`);
+      setCep(response.data);
+
+      const adress = document.querySelector("#adress");
+      adress.classList.remove('hidden');
+
+    } catch (error) {
+      console.error(error);
+      setInput("");
+
+      toast.error('CEP inválido', {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+      
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ToastContainer />
+      <div className="container">
+
+        <h1>BUSCAR CEP</h1>
+
+        <div className="container-input">
+          
+          <input type="text" placeholder="CEP" value={input} onChange={(e) => setInput(e.target.value) }/>
+          <button className="search" onClick={getCEP}> <FiSearch size={25} color="#FFF"/> </button>
+          
+        </div>
+
+        <main className='hidden' id="adress">
+
+          <span>{cep.logradouro}, {cep.complemento}</span>
+          <span>{cep.bairro}, {cep.localidade}-{cep.uf}</span>
+
+        </main>
+
+      </div>
+    </>
   );
 }
 

@@ -1,0 +1,18 @@
+      <div className="container-title">
+        <FiSearch size={30} color="#E63946"/>
+        <h1>BUSCAR CEP</h1>
+      </div>
+      <div className="container-input">
+          <input type="text" placeholder="CEP"/>
+          <button className="search">
+            <FiSearch size={25} color="#FFF"/>
+          </button>
+      </div>
+
+      <main>
+        <h2>CEP: 06240-10</h2>
+        <span>Rua Antônio Alves Ribeiro</span>
+        <span>Complemento: AP 08</span>
+        <span>Munhoz Junior</span>
+        <span>Osasco - Sp</span>
+      </main>
