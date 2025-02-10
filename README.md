@@ -1,5 +1,7 @@
 # CEP
 
+![Screnshot](https://github.com/matheusnascimentods/CEP/blob/master/images/01.png)
+
 Este é meu primeiro projeto com React, onde criei um site simples que permite ao usuário informar seu CEP e obter dados detalhados do endereço correspondente via API dos Correios.
 
 **Tecnologias Utilizadas:**
